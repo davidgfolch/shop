@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+import javax.validation.constraints.NotEmpty;
+
 @RequiredArgsConstructor
 @AllArgsConstructor()
 @Data()
@@ -12,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 public class Product implements IProduct {
 
     private Long id;
+    @NotEmpty
     private String name;
     private Float price;
 

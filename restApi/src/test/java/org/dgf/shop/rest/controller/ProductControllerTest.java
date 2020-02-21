@@ -2,6 +2,7 @@ package org.dgf.shop.rest.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.dgf.shop.rest.dto.ProductDto;
+import org.dgf.shop.rest.dto.ProductNewDto;
 import org.dgf.shop.rest.model.Product;
 import org.dgf.shop.service.product.ProductService;
 import org.junit.jupiter.api.Test;
@@ -32,13 +33,13 @@ public class ProductControllerTest {
     private ProductService service;
 
     private final ObjectMapper mapper = new ObjectMapper();
-    private final Product product1 = ProductDto.builder().id(1L).name("Product1").price(10f).build();
 
     @Test
     void create() throws Exception {
-        when(service.create(product1)).thenReturn(product1);
+        final Product newProduct = ProductNewDto.builder().name("Product1").price(10f).build();
+        when(service.create(newProduct)).thenReturn(newProduct);
 
-        String json = mapper.writeValueAsString(product1);
+        String json = mapper.writeValueAsString(newProduct);
         mockMvc.perform(
                 post("/product/create")
                         .content(json)
@@ -51,9 +52,10 @@ public class ProductControllerTest {
 
     @Test
     void update() throws Exception {
-        when(service.update(product1)).thenReturn(Optional.empty());
+        final Product updateProduct = ProductDto.builder().id(1L).name("Product1").price(10f).build();
+        when(service.update(updateProduct)).thenReturn(Optional.empty());
 
-        String json = mapper.writeValueAsString(product1);
+        String json = mapper.writeValueAsString(updateProduct);
         mockMvc.perform(
                 post("/product/update")
                         .content(json)

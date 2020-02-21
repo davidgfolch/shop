@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -18,7 +19,7 @@ public class OrderTest {
 
     @Test
     public void order() {
-        Order order = Order.builder().products(products).build();
+        Order<?> order = Order.builder().products(products.stream().map(Product::getId).collect(Collectors.toList())).build();
         assertNull(order.getDate());
         assertEquals(2,order.getProducts().size());
     }

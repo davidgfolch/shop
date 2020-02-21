@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+import javax.validation.constraints.Email;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -12,11 +13,12 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @Builder
-public class Order implements IOrder<Product> {
+public class Order<T> implements IOrder<T> {
 
     private Long id;
     private LocalDate date;
-    private List<Product> products;
+    private List<T> products;
+    @Email(message = "Email should be valid")
     private String customerEmail;
-    private Float price;
+    private Double price;
 }
