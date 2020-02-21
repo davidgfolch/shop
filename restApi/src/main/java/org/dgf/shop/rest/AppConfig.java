@@ -4,7 +4,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 
-@ComponentScan(basePackages = "org.dgf")
+@ComponentScan(basePackages = "org.dgf.shop")
 @Configuration
 public class AppConfig {
 }

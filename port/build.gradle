@@ -4,14 +4,6 @@ plugins {
     id 'java'
 }
 
-group = 'org.dgf'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
-
-repositories {
-    mavenCentral()
-}
-
 bootJar { enabled = false }
 jar { enabled = true }
 
@@ -23,8 +15,6 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-autoconfigure'
-//    implementation 'javax.transaction:javax.transaction-api'
-    implementation project(':model')
 
     testImplementation('org.springframework.boot:spring-boot-starter-test')
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.0.1'

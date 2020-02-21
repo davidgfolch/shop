@@ -17,7 +17,9 @@ import java.util.Optional;
 @RestController()
 @RequestMapping(value = "/product")
 @RequiredArgsConstructor
-class ProductController {
+public class ProductController {
+
+	public static final String PRODUCT_NOT_FOUND = "Product not found";
 
 	private final ProductService service;
 
@@ -31,7 +33,7 @@ class ProductController {
 	ResponseEntity<Object> update(@RequestBody() ProductDto dto) {
 		Optional<ResponseEntity<Object>> resp = service.update(dto)
 				.map(ResponseOk::new);
-		return resp.orElseGet(() -> new ResponseError("Product not found"));
+		return resp.orElseGet(() -> new ResponseError(PRODUCT_NOT_FOUND));
 	}
 
 	@GetMapping(path = "/find/{nameLikeFilter}")

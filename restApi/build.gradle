@@ -1,22 +1,3 @@
-plugins {
-    id 'org.springframework.boot' version '2.2.4.RELEASE'
-    id 'io.spring.dependency-management'
-    id 'java'
-}
-
-group = 'org.dgf'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
-
-repositories {
-    mavenCentral()
-
-    maven {
-        //For now, we plan to start releasing to Maven Central soon
-        url "https://dl.bintray.com/mockito/maven"
-    }
-}
-
 dependencies {
     implementation project(':model')
     implementation project(':productService')
