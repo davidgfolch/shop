@@ -1,14 +1,14 @@
 package org.dgf.shop.persistence.h2.order;
 
+import lombok.experimental.UtilityClass;
 import org.dgf.shop.persistence.h2.product.ProductEntity;
 import org.dgf.shop.persistence.h2.product.ProductMapper;
 import org.dgf.shop.rest.model.Order;
 import org.dgf.shop.rest.model.Product;
-import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
 
-@Component
+@UtilityClass
 public class OrderMapper {
 
     public static OrderEntity convert(Order<Long> bean) {

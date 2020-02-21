@@ -6,10 +6,7 @@ import lombok.NoArgsConstructor;
 import org.dgf.shop.rest.model.IProduct;
 import org.dgf.shop.rest.model.Product;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "shop_product")
@@ -21,7 +18,9 @@ public class ProductEntity implements IProduct {
     @Id
     @GeneratedValue
     private Long id;
+    @Column
     private String name;
+    @Column
     private Float price;
 
     public ProductEntity(Long id) {

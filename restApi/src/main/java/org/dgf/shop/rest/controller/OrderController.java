@@ -32,7 +32,7 @@ public class OrderController {
 		return new ResponseEntity<>(res, HttpStatus.CREATED);
 	}
 
-	@GetMapping(path = "/find/{dateFrom}/{dateTo}")
+	@GetMapping(path = "/find")
 	ResponseEntity<List<Order<Product>>> find(
 			@ApiParam(defaultValue = "2020-01-01T00:00:00") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) @RequestParam LocalDateTime from,
 			@ApiParam(defaultValue = "2050-12-31T00:00:00") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) @RequestParam LocalDateTime to) {

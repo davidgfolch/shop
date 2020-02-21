@@ -1,9 +1,9 @@
 package org.dgf.shop.persistence.h2.product;
 
+import lombok.experimental.UtilityClass;
 import org.dgf.shop.rest.model.Product;
-import org.springframework.stereotype.Component;
 
-@Component
+@UtilityClass
 public class ProductMapper {
 
     public static ProductEntity convert(Product bean) {

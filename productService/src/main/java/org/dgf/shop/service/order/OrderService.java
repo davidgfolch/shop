@@ -1,11 +1,11 @@
 package org.dgf.shop.service.order;
 
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.dgf.shop.port.OrderPort;
 import org.dgf.shop.port.ProductPort;
 import org.dgf.shop.rest.model.Order;
 import org.dgf.shop.rest.model.Product;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -16,7 +16,7 @@ import static java.util.stream.Collectors.summingDouble;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
+@Transactional //todo check transaction works
 public class OrderService implements OrderUseCase {
 
     public static final String ORDER_MUST_HAVE_PRODUCTS = "Order must have products";
@@ -24,8 +24,8 @@ public class OrderService implements OrderUseCase {
     private final ProductPort productPort;
 
     @Override
-    public Order<Product> create(Order<Long> entity) {
-        if (entity.getProducts().isEmpty()) throw new IllegalStateException(ORDER_MUST_HAVE_PRODUCTS);
+    public Order<Product> create(@NonNull Order<Long> entity) {
+        if (entity.getProducts()==null || entity.getProducts().isEmpty()) throw new IllegalStateException(ORDER_MUST_HAVE_PRODUCTS);
         entity.setPrice(productPort.findAll(entity.getProducts()).stream().mapToDouble(Product::getPrice).sum());
         return port.create(entity);
     }

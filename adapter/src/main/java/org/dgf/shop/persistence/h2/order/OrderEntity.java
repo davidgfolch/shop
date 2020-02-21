@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.dgf.shop.persistence.h2.product.ProductEntity;
 import org.dgf.shop.rest.model.IOrder;
-import org.dgf.shop.rest.model.IProduct;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -24,7 +23,7 @@ public class OrderEntity implements IOrder<ProductEntity> {
     private Long id;
     private LocalDateTime date;
     @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
-    private List<ProductEntity> products = new ArrayList<>();
+    private List<ProductEntity> products;
     private String customerEmail;
     private Double price;
 

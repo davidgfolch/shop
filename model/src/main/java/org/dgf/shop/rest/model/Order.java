@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class Order<T> implements IOrder<T> {
 
     private Long id;
     private LocalDateTime date;
+    @NotNull
     private List<T> products;
     @Email(message = "Email should be valid")
     private String customerEmail;

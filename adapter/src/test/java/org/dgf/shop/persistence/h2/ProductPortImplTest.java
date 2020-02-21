@@ -1,8 +1,7 @@
 package org.dgf.shop.persistence.h2;
 
-import org.dgf.shop.persistence.h2.product.ProductPortImpl;
 import org.dgf.shop.persistence.h2.product.ProductEntity;
-import org.dgf.shop.persistence.h2.product.ProductMapper;
+import org.dgf.shop.persistence.h2.product.ProductPortImpl;
 import org.dgf.shop.persistence.h2.product.ProductRepository;
 import org.dgf.shop.rest.model.Product;
 import org.junit.Test;
@@ -12,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,7 +20,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest(classes = { ProductPortImpl.class, ProductMapper.class })
+@SpringBootTest(classes = { ProductPortImpl.class })
 @RunWith(SpringRunner.class)
 public class ProductPortImplTest {
 
@@ -72,5 +73,14 @@ public class ProductPortImplTest {
         List<Product> entity = port.find((String)null);
         assertTrue(entity.isEmpty());
     }
+
+    @Test
+    public void findAll() {
+        List<Long> ids=Collections.singletonList(1L);
+        when(repo.findAllById(ids)).thenReturn(new ArrayList<>());
+        List<Product> entity = port.findAll(ids);
+        assertTrue(entity.isEmpty());
+    }
+
 
 }
