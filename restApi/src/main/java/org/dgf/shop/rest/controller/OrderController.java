@@ -15,7 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController()
@@ -34,8 +34,8 @@ public class OrderController {
 
 	@GetMapping(path = "/find/{dateFrom}/{dateTo}")
 	ResponseEntity<List<Order<Product>>> find(
-			@ApiParam(defaultValue = "2020-01-01") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @RequestParam LocalDate from,
-			@ApiParam(defaultValue = "2050-12-31") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @RequestParam LocalDate to) {
+			@ApiParam(defaultValue = "2020-01-01T00:00:00") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) @RequestParam LocalDateTime from,
+			@ApiParam(defaultValue = "2050-12-31T00:00:00") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) @RequestParam LocalDateTime to) {
 		return new ResponseOk<>(service.find(from,to));
 	}
 

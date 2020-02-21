@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,12 +28,12 @@ public class OrderPortImpl implements OrderPort {
     public Order<Product> create(@NonNull Order<Long> model) {
         OrderEntity entity = OrderMapper.convert(model);
         entity.setProducts(productRepo.findAllById(model.getProducts()));
-        entity.setDate(LocalDate.now());
+        entity.setDate(LocalDateTime.now());
         return OrderMapper.convert(repo.save(entity));
     }
 
     @Override
-    public List<Order<Product>> find(@NonNull LocalDate from, @NonNull LocalDate to) {
+    public List<Order<Product>> find(@NonNull LocalDateTime from, @NonNull LocalDateTime to) {
         return repo.findByDateBetween(from,to).stream().map(OrderMapper::convert).collect(Collectors.toList());
     }
 

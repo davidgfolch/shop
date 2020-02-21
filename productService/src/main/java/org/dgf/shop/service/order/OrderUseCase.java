@@ -4,7 +4,7 @@ import org.dgf.shop.rest.model.Order;
 import org.dgf.shop.rest.model.Product;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,5 +12,5 @@ import java.util.Optional;
 public interface OrderUseCase {
 
     Order<Product> create(Order<Long> product);
-    List<Order<Product>> find(LocalDate from, LocalDate to);
+    List<Order<Product>> find(LocalDateTime from, LocalDateTime to);
 }

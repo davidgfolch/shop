@@ -8,7 +8,7 @@ import org.dgf.shop.rest.model.IOrder;
 import org.dgf.shop.rest.model.IProduct;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class OrderEntity implements IOrder<ProductEntity> {
     @Id
     @GeneratedValue
     private Long id;
-    private LocalDate date;
+    private LocalDateTime date;
     @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
     private List<ProductEntity> products = new ArrayList<>();
     private String customerEmail;

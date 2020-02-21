@@ -9,7 +9,7 @@ import org.dgf.shop.rest.model.Product;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static java.util.stream.Collectors.summingDouble;
@@ -31,7 +31,7 @@ public class OrderService implements OrderUseCase {
     }
 
     @Override
-    public List<Order<Product>> find(@NonNull LocalDate from, @NonNull LocalDate to) {
+    public List<Order<Product>> find(@NonNull LocalDateTime from, @NonNull LocalDateTime to) {
         return port.find(from,to);
     }
 
