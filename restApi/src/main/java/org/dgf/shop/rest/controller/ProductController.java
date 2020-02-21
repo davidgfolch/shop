@@ -5,7 +5,7 @@ import org.dgf.shop.rest.common.ResponseError;
 import org.dgf.shop.rest.common.ResponseOk;
 import org.dgf.shop.rest.dto.ProductDto;
 import org.dgf.shop.rest.model.Product;
-import org.dgf.shop.rest.service.ProductService;
+import org.dgf.shop.service.product.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +25,8 @@ public class ProductController {
 
 	@PostMapping(path = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<Product> create(@RequestBody() ProductDto dto) {
-		Product product = service.create(dto);
-		return new ResponseEntity<>(product, HttpStatus.CREATED);
+		Product resp = service.create(dto);
+		return new ResponseEntity<>(resp, HttpStatus.CREATED);
 	}
 
 	@PostMapping(path = "/update", consumes = MediaType.APPLICATION_JSON_VALUE)
