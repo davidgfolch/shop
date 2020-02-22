@@ -21,6 +21,7 @@ Intellij install lombok plugin.
 ## Run
 
 Run the Spring Boot Application in restApi module.
+
 You can try it with Swagger-ui accesing http://localhost:8080/swagger-ui.html
 
 ## Swagger
