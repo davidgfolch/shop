@@ -3,6 +3,7 @@ package org.dgf.shop.service;
 import org.dgf.shop.port.OrderPort;
 import org.dgf.shop.port.ProductPort;
 import org.dgf.shop.rest.model.Order;
+import org.dgf.shop.rest.model.OrderException;
 import org.dgf.shop.rest.model.Product;
 import org.dgf.shop.service.order.OrderService;
 import org.junit.Test;
@@ -19,6 +20,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest(classes = OrderService.class)
@@ -39,19 +41,25 @@ public class OrderServiceTest {
     private final Order<Long> modelNullProducts = Order.<Long>builder().customerEmail("d@g.com").products(null).build();
 
     @Test
-    public void create() {
+    public void create() throws OrderException {
         when(port.create(model)).thenReturn(Order.<Product>builder().customerEmail("d@g.com").build());
         Order<Product> result = service.create(model);
         assertEquals(model.getCustomerEmail(),result.getCustomerEmail());
     }
+    @Test(expected = RuntimeException.class)
+    public void createTransaction() throws OrderException {
+        when(productPort.findAllById(anyList())).thenThrow(new RuntimeException("Checking service @Transactional annotation"));
+        when(port.create(model)).thenReturn(Order.<Product>builder().customerEmail("d@g.com").build());
+        service.create(model);
+    }
 
     @Test(expected = IllegalStateException.class)
-    public void createNoProductsException() {
+    public void createNoProductsException() throws OrderException {
         service.create(modelNoProducts);
     }
 
     @Test(expected = IllegalStateException.class)
-    public void createNullProductsException() {
+    public void createNullProductsException() throws OrderException {
         service.create(modelNullProducts);
     }
 

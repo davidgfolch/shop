@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -16,8 +17,9 @@ import static org.springframework.util.StringUtils.isEmpty;
 
 @Component
 @RequiredArgsConstructor
-@EnableJpaRepositories
 @EnableAutoConfiguration
+@EnableJpaRepositories
+@Transactional(rollbackOn = RuntimeException.class, value= Transactional.TxType.MANDATORY)
 public class ProductPortImpl implements ProductPort {
 
     private final ProductRepository repo;
@@ -52,7 +54,7 @@ public class ProductPortImpl implements ProductPort {
     }
 
     @Override
-    public List<Product> findAll(List<Long> ids) {
+    public List<Product> findAllById(List<Long> ids) {
         return repo.findAllById(ids).stream().map(ProductMapper::convert).collect(Collectors.toList());
     }
 }

@@ -34,3 +34,13 @@ Create order:
         1
       ]
     }
+    
+## Considerations
+- You do not need to add authentication to your web service, but propose a protocol / method and
+justify your choice.
+    - Use of HTTPS.
+    - Password hash.
+    - Basic auth or OAuth.
+- How can you make the service redundant? What considerations should you do?
+    - Decoupling restApi, service, port and adapter from spring boot dependency management and communicate them via async or sync protocols.
+    - Alternatively creating separate services with the full-stack rest+service+persistence, but it doesn't has many sense in this small project.

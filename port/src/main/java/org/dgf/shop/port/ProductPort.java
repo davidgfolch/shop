@@ -13,5 +13,5 @@ public interface ProductPort {
     void delete(Long id);
     Optional<Product> find(Long id);
     List<Product> find(String nameLike);
-    List<Product> findAll(List<Long> ids);
+    List<Product> findAllById(List<Long> ids);
 }

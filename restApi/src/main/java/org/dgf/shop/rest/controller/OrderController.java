@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.dgf.shop.rest.common.ResponseOk;
 import org.dgf.shop.rest.dto.OrderNewDto;
 import org.dgf.shop.rest.model.Order;
+import org.dgf.shop.rest.model.OrderException;
 import org.dgf.shop.rest.model.Product;
 import org.dgf.shop.service.order.OrderService;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -27,7 +28,7 @@ public class OrderController {
 	private final OrderService service;
 
 	@PostMapping(path = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
-	ResponseEntity<Order<Product>> create(@Valid @RequestBody() OrderNewDto dto) {
+	ResponseEntity<Order<Product>> create(@Valid @RequestBody() OrderNewDto dto) throws OrderException {
 		Order<Product> res = service.create(dto);
 		return new ResponseEntity<>(res, HttpStatus.CREATED);
 	}

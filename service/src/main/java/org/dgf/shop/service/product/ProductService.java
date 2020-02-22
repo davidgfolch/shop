@@ -1,8 +1,8 @@
 package org.dgf.shop.service.product;
 
 import lombok.RequiredArgsConstructor;
-import org.dgf.shop.rest.model.Product;
 import org.dgf.shop.port.ProductPort;
+import org.dgf.shop.rest.model.Product;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
+@Transactional(value=Transactional.TxType.REQUIRED)
 public class ProductService implements ProductUseCase {
 
     private final ProductPort port;

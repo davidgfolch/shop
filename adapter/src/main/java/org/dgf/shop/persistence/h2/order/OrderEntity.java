@@ -21,7 +21,7 @@ public class OrderEntity implements IOrder<ProductEntity> {
     @GeneratedValue
     private Long id;
     private LocalDateTime date;
-    @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
     private List<ProductEntity> products;
     private String customerEmail;
     private Double price;

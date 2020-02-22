@@ -50,6 +50,7 @@ public class ProductServiceTest {
         service.delete(1L);
         assertTrue(true);
     }
+
     @Test()
     public void findById() {
         when(port.find(1L)).thenReturn(Optional.of(model));
@@ -57,6 +58,7 @@ public class ProductServiceTest {
         assertTrue(res.isPresent());
         assertEquals(res.get(), model);
     }
+
     @Test()
     public void findByName() {
         when(port.find("non existent")).thenReturn(new ArrayList<>());

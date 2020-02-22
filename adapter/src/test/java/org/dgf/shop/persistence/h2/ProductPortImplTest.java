@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,6 +23,7 @@ import static org.mockito.Mockito.when;
 
 @SpringBootTest(classes = { ProductPortImpl.class })
 @RunWith(SpringRunner.class)
+@Transactional
 public class ProductPortImplTest {
 
     @Autowired
@@ -80,7 +82,7 @@ public class ProductPortImplTest {
     public void findAll() {
         List<Long> ids=Collections.singletonList(1L);
         when(repo.findAllById(ids)).thenReturn(new ArrayList<>());
-        List<Product> model = port.findAll(ids);
+        List<Product> model = port.findAllById(ids);
         assertTrue(model.isEmpty());
     }
 

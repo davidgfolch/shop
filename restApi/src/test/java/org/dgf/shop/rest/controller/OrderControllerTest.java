@@ -3,6 +3,7 @@ package org.dgf.shop.rest.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.dgf.shop.rest.dto.OrderNewDto;
 import org.dgf.shop.rest.model.Order;
+import org.dgf.shop.rest.model.OrderException;
 import org.dgf.shop.rest.model.Product;
 import org.dgf.shop.service.order.OrderService;
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import static org.dgf.shop.rest.RestApiExceptionHandler.GENERIC_APPLICATION_ERROR;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -36,7 +38,7 @@ public class OrderControllerTest {
     private final ObjectMapper mapper = new ObjectMapper();
 
     @Test
-    void create() throws Exception {
+    public void create() throws Exception {
         final Order<Long> newOrder = OrderNewDto.<Long>builder().customerEmail("d@g.com")
                 .products(Collections.singletonList(1L)).build();
         Order<Product> res = OrderNewDto.<Product>builder().build();
@@ -51,8 +53,22 @@ public class OrderControllerTest {
                 .andExpect(content().json(mapper.writeValueAsString(res)));
     }
 
+    @Test()
+    public void createException() throws Exception {
+        final Order<Long> newOrder = OrderNewDto.<Long>builder().customerEmail("d@g.com").products(Collections.singletonList(1L)).build();
+        when(service.create(newOrder)).thenThrow(new OrderException(""));
+        mockMvc.perform(
+                post("/order/create")
+                        .content(mapper.writeValueAsString(newOrder))
+                        .contentType(APPLICATION_JSON)
+        )
+                .andDo(print())
+                .andExpect(status().isConflict())
+                .andExpect(content().string(GENERIC_APPLICATION_ERROR));
+    }
+
     @Test
-    void find() throws Exception {
+    public void find() throws Exception {
         LocalDateTime from=LocalDateTime.now();
         LocalDateTime to=LocalDateTime.now();
         when(service.find(from,to)).thenReturn(new ArrayList<>());
