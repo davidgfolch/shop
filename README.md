@@ -8,6 +8,8 @@ Sonar plugin enabled.
 
 Swagger2 configuration enabled.
 
+H2 in memory persistence.
+
 ## Testing
 
 JUnit / mockito
