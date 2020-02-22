@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.dgf.shop.rest.model.IProduct;
-import org.dgf.shop.rest.model.Product;
 
 import javax.persistence.*;
 
@@ -27,10 +26,5 @@ public class ProductEntity implements IProduct {
         this.id=id;
     }
 
-    public ProductEntity copyFromModel(Product entity) {
-        this.name=entity.getName();
-        this.price=entity.getPrice();
-        return this;
-    }
 }
 

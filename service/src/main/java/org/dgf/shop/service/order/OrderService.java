@@ -12,8 +12,6 @@ import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static java.util.stream.Collectors.summingDouble;
-
 @Service
 @RequiredArgsConstructor
 @Transactional //todo check transaction works
@@ -24,10 +22,10 @@ public class OrderService implements OrderUseCase {
     private final ProductPort productPort;
 
     @Override
-    public Order<Product> create(@NonNull Order<Long> entity) {
-        if (entity.getProducts()==null || entity.getProducts().isEmpty()) throw new IllegalStateException(ORDER_MUST_HAVE_PRODUCTS);
-        entity.setPrice(productPort.findAll(entity.getProducts()).stream().mapToDouble(Product::getPrice).sum());
-        return port.create(entity);
+    public Order<Product> create(@NonNull Order<Long> model) {
+        if (model.getProducts()==null || model.getProducts().isEmpty()) throw new IllegalStateException(ORDER_MUST_HAVE_PRODUCTS);
+        model.setPrice(productPort.findAll(model.getProducts()).stream().mapToDouble(Product::getPrice).sum());
+        return port.create(model);
     }
 
     @Override

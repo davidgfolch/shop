@@ -27,21 +27,21 @@ public class ProductServiceTest {
     @MockBean
     private ProductPort port;
 
-    private final Product entity = Product.builder().id(1L).name("Product1").price(10F).build();
+    private final Product model = Product.builder().id(1L).name("Product1").price(10F).build();
 
     @Test
     public void create() {
-        when(port.create(entity)).thenReturn(entity);
-        Product result = service.create(entity);
-        assertEquals(entity,result);
+        when(port.create(model)).thenReturn(model);
+        Product result = service.create(model);
+        assertEquals(model,result);
     }
 
     @Test
     public void update() {
-        when(port.update(entity)).thenReturn(Optional.of(entity));
-        Optional<Product> result = service.update(entity);
+        when(port.update(model)).thenReturn(Optional.of(model));
+        Optional<Product> result = service.update(model);
         assertTrue(result.isPresent());
-        assertEquals(entity,result.get());
+        assertEquals(model,result.get());
     }
 
     @Test()
@@ -52,10 +52,10 @@ public class ProductServiceTest {
     }
     @Test()
     public void findById() {
-        when(port.find(1L)).thenReturn(Optional.of(entity));
+        when(port.find(1L)).thenReturn(Optional.of(model));
         Optional<Product> res = service.find(1L);
         assertTrue(res.isPresent());
-        assertEquals(res.get(),entity);
+        assertEquals(res.get(), model);
     }
     @Test()
     public void findByName() {

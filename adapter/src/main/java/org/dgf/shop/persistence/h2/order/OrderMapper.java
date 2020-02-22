@@ -11,10 +11,10 @@ import java.util.stream.Collectors;
 @UtilityClass
 public class OrderMapper {
 
-    public static OrderEntity convert(Order<Long> bean) {
-        return new OrderEntity(bean.getId(), bean.getDate(),
-                bean.getProducts().stream().map(ProductEntity::new).collect(Collectors.toList()),
-                bean.getCustomerEmail(), bean.getPrice());
+    public static OrderEntity convert(Order<Long> model) {
+        return new OrderEntity(model.getId(), model.getDate(),
+                model.getProducts().stream().map(ProductEntity::new).collect(Collectors.toList()),
+                model.getCustomerEmail(), model.getPrice());
     }
 
     public static Order<Product> convert(OrderEntity entity) {

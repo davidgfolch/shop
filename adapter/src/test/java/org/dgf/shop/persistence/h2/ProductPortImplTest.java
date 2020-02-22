@@ -41,9 +41,11 @@ public class ProductPortImplTest {
 
     @Test
     public void update() {
+        when(repo.findById(model.getId())).thenReturn(Optional.of(entity));
         when(repo.save(entity)).thenReturn(entity);
         Optional<Product> result = port.update(model);
-        assertFalse(result.isPresent());
+        assertTrue(result.isPresent());
+        assertEquals(model,result.get());
     }
 
     @Test
@@ -56,30 +58,30 @@ public class ProductPortImplTest {
     @Test
     public void findById() {
         when(repo.findById(1L)).thenReturn(Optional.empty());
-        Optional<Product> entity = port.find(1L);
-        assertFalse(entity.isPresent());
+        Optional<Product> model = port.find(1L);
+        assertFalse(model.isPresent());
     }
 
     @Test
     public void findByName() {
         when(repo.findById(1L)).thenReturn(Optional.empty());
-        List<Product> entity = port.find("non existent product");
-        assertTrue(entity.isEmpty());
+        List<Product> model = port.find("non existent product");
+        assertTrue(model.isEmpty());
     }
 
     @Test
     public void findByNameNull() {
         when(repo.findById(1L)).thenReturn(Optional.empty());
-        List<Product> entity = port.find((String)null);
-        assertTrue(entity.isEmpty());
+        List<Product> model = port.find((String)null);
+        assertTrue(model.isEmpty());
     }
 
     @Test
     public void findAll() {
         List<Long> ids=Collections.singletonList(1L);
         when(repo.findAllById(ids)).thenReturn(new ArrayList<>());
-        List<Product> entity = port.findAll(ids);
-        assertTrue(entity.isEmpty());
+        List<Product> model = port.findAll(ids);
+        assertTrue(model.isEmpty());
     }
 
 

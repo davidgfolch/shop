@@ -34,25 +34,25 @@ public class OrderServiceTest {
     @MockBean
     private ProductPort productPort;
 
-    private final Order<Long> entity = Order.<Long>builder().customerEmail("d@g.com").products(Collections.singletonList(1L)).build();
-    private final Order<Long> entityNoProducts = Order.<Long>builder().customerEmail("d@g.com").products(new ArrayList<>()).build();
-    private final Order<Long> entityNullProducts = Order.<Long>builder().customerEmail("d@g.com").products(null).build();
+    private final Order<Long> model = Order.<Long>builder().customerEmail("d@g.com").products(Collections.singletonList(1L)).build();
+    private final Order<Long> modelNoProducts = Order.<Long>builder().customerEmail("d@g.com").products(new ArrayList<>()).build();
+    private final Order<Long> modelNullProducts = Order.<Long>builder().customerEmail("d@g.com").products(null).build();
 
     @Test
     public void create() {
-        when(port.create(entity)).thenReturn(Order.<Product>builder().customerEmail("d@g.com").build());
-        Order<Product> result = service.create(entity);
-        assertEquals(entity.getCustomerEmail(),result.getCustomerEmail());
+        when(port.create(model)).thenReturn(Order.<Product>builder().customerEmail("d@g.com").build());
+        Order<Product> result = service.create(model);
+        assertEquals(model.getCustomerEmail(),result.getCustomerEmail());
     }
 
     @Test(expected = IllegalStateException.class)
     public void createNoProductsException() {
-        service.create(entityNoProducts);
+        service.create(modelNoProducts);
     }
 
     @Test(expected = IllegalStateException.class)
     public void createNullProductsException() {
-        service.create(entityNullProducts);
+        service.create(modelNullProducts);
     }
 
     @Test()

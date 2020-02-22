@@ -8,7 +8,6 @@ import org.dgf.shop.rest.model.IOrder;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity

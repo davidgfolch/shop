@@ -17,13 +17,13 @@ public class ProductService implements ProductUseCase {
     private final ProductPort port;
 
     @Override
-    public Product create(Product entity) {
-        return port.create(entity);
+    public Product create(Product model) {
+        return port.create(model);
     }
 
     @Override
-    public Optional<Product> update(Product entity) {
-        return port.update(entity);
+    public Optional<Product> update(Product model) {
+        return port.update(model);
     }
 
     @Override

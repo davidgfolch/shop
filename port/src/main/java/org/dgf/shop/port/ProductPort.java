@@ -8,10 +8,10 @@ import java.util.Optional;
 
 @Component
 public interface ProductPort {
-    Product create(Product entity);
-    Optional<Product> update(Product entity);
+    Product create(Product model);
+    Optional<Product> update(Product model);
     void delete(Long id);
     Optional<Product> find(Long id);
     List<Product> find(String nameLike);
-    List<Product> findAll(List<Long> products);
+    List<Product> findAll(List<Long> ids);
 }

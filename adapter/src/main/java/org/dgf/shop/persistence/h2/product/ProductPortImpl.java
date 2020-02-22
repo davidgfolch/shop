@@ -23,14 +23,14 @@ public class ProductPortImpl implements ProductPort {
     private final ProductRepository repo;
 
     @Override
-    public Product create(@NonNull Product entity) {
-        return ProductMapper.convert(repo.save(ProductMapper.convert(entity)));
+    public Product create(@NonNull Product model) {
+        return ProductMapper.convert(repo.save(ProductMapper.convert(model)));
     }
 
     @Override
-    public Optional<Product> update(@NonNull Product entity) {
-        return repo.findById(entity.getId())
-                .map(e->e.copyFromModel(entity))
+    public Optional<Product> update(@NonNull Product model) {
+        return repo.findById(model.getId())
+                .map(e->ProductMapper.copy(model,e))
                 .map(repo::save)
                 .map(ProductMapper::convert);
     }
@@ -52,7 +52,7 @@ public class ProductPortImpl implements ProductPort {
     }
 
     @Override
-    public List<Product> findAll(List<Long> products) {
-        return repo.findAllById(products).stream().map(ProductMapper::convert).collect(Collectors.toList());
+    public List<Product> findAll(List<Long> ids) {
+        return repo.findAllById(ids).stream().map(ProductMapper::convert).collect(Collectors.toList());
     }
 }

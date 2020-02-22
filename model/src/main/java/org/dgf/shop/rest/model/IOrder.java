@@ -1,7 +1,6 @@
 package org.dgf.shop.rest.model;
 
 import java.time.LocalDateTime;
-import java.time.LocalDateTime;
 import java.util.List;
 
 public interface IOrder<T> {

@@ -9,6 +9,6 @@ import java.util.List;
 
 @Component
 public interface OrderPort {
-    Order<Product> create(Order<Long> entity);
+    Order<Product> create(Order<Long> model);
     List<Order<Product>> find(LocalDateTime from, LocalDateTime to);
 }
