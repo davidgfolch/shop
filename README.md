@@ -50,5 +50,4 @@ justify your choice.
     - Password hash.
     - Basic auth or OAuth.
 - How can you make the service redundant? What considerations should you do?
-    - Decoupling restApi, service, port and adapter from spring boot dependency management and communicate them via async or sync protocols.
-    - Alternatively creating separate services with the full-stack rest+service+persistence, but it doesn't has many sense in this small project.
+    - Decoupling restApi, service, port and adapter from spring boot dependency management and communicate them via async or sync protocols/frameworks, for example, this [spring-cloud+kubernetes](https://dzone.com/articles/quick-guide-to-microservices-with-kubernetes-sprin) solution.
