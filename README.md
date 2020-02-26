@@ -1,5 +1,7 @@
 # Shop
 
+[![Build Status](https://travis-ci.com/davidgfolch/shop.svg?branch=master)](https://travis-ci.com/davidgfolch/shop)
+
 Hexagonal architecture approach.
 
 Gradle multi module Spring-boot project.
