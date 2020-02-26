@@ -8,6 +8,7 @@ plugins {
 sonarqube {
     properties {
         property "sonar.sourceEncoding", "UTF-8"
+        property "sonar.projectKey", "13814eaa9b43ba5e25d2df7d0f0130c37635a8de"
     }
 }
 

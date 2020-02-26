@@ -53,3 +53,17 @@ justify your choice.
     - Basic auth or OAuth.
 - How can you make the service redundant? What considerations should you do?
     - Decoupling restApi, service, port and adapter from spring boot dependency management and communicate them via async or sync protocols/frameworks, for example, this [spring-cloud+kubernetes](https://dzone.com/articles/quick-guide-to-microservices-with-kubernetes-sprin) solution.
+
+
+## Travis
+
+### Sonarqube
+
+Generate encrypted key
+
+    travis login --pro
+    travis encrypt --pro 7abce0510365e6f776e1f6b95727245001c43113
+    
+copy to .travis.yml
+
+Follow instruccions in https://sonarcloud.io
