@@ -11,5 +11,5 @@ script:
   # other script steps might be done before running the actual analysis
   # todo coverage
   - ./gradlew sonarqube
-#  - sonar-scanner
+#  - sonar-scanner  #org.sonar.java.AnalysisException: Please provide compiled classes of your project with sonar.java.binaries property
 

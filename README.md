@@ -1,6 +1,7 @@
 # Shop
 
 [![Build Status](https://travis-ci.com/davidgfolch/shop.svg?branch=master)](https://travis-ci.com/davidgfolch/shop)
+[![Quality Gate](https://sonarcloud.io/api/badges/gate?key=13814eaa9b43ba5e25d2df7d0f0130c37635a8de)](https://sonarcloud.io/dashboard/index/13814eaa9b43ba5e25d2df7d0f0130c37635a8de)
 
 Hexagonal architecture approach.
 
