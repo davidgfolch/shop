@@ -71,7 +71,7 @@ public class ProductControllerTest {
         when(service.find("")).thenReturn(new ArrayList<>());
 
         mockMvc.perform(
-                    get("/product/find/{nameLikeFilter}","this product doesn't exist")
+                    get("/product/find","non existent product name")
                 )
                 .andDo(print())
                 .andExpect(status().isOk())

@@ -28,13 +28,13 @@ public class OrderController {
 	private final OrderService service;
 
 	@PostMapping(path = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
-	ResponseEntity<Order<Product>> create(@Valid @RequestBody() OrderNewDto dto) throws OrderException {
+	public ResponseEntity<Order<Product>> create(@Valid @RequestBody() OrderNewDto dto) throws OrderException {
 		Order<Product> res = service.create(dto);
 		return new ResponseEntity<>(res, HttpStatus.CREATED);
 	}
 
 	@GetMapping(path = "/find")
-	ResponseEntity<List<Order<Product>>> find(
+	public ResponseEntity<List<Order<Product>>> find(
 			@ApiParam(defaultValue = "2020-01-01T00:00:00") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) @RequestParam LocalDateTime from,
 			@ApiParam(defaultValue = "2050-12-31T00:00:00") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) @RequestParam LocalDateTime to) {
 		return new ResponseOk<>(service.find(from,to));
