@@ -1,4 +1,13 @@
 before_install:
-  - chmod +x gradlew
+  - chmod +x gradlew  #run permissions for gradlew
 language: java
+
+addons:
+  sonarcloud:
+    organization: "shop-travis" # the key in https://sonarcloud.io/account/security
+    token:
+      secure: "$shop-travis-token" # encrypted value of your token
+script:
+  # other script steps might be done before running the actual analysis
+  - sonar-scanner
 
